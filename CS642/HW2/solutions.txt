@@ -1,0 +1,31 @@
+Part A)
+    1) I am exploiting a vulnerability to XSS. The session cookie is easily accessible using document.cookie and
+    there is no sanitization so any code can be injected. 
+    2) My attack works by utilizing cross-site scripting to inject a script in the URL which automatically sends
+     emails from client-side Javascript to my user account inside the Boxes 2/X VM. The payload of the email
+    is set to the cookie I am stealing and upon sending the email I essentially reload the logged in user's profile 
+    page using window.location.replace() to avoid any suspicious messages (the red text) on the page.
+    3) This vulnerability can be mitigated using input validation (checking the user inputs before executing).
+
+Part B)
+    1) I am exploiting a vulnerability to CSRF so that the logged in user performs unintended actions. Since the user
+    is already logged in, I can take advantage of cookie scoping rules for authentication purposes.
+    2) When the user navigates to my page, I send a scripted form that holds my username and the amount of zoobar 
+    credits I want (as if the logged in user had filled it out already) and the browser POSTs the form submission
+    request with the cookies and so the transfer successfully completes. I use setTimeout to make sure the transaction
+    is successful before redirecting to bing.com. I also set the target of the form to an iframe so that a new page
+    does not pop up after the transaction and I then hide the form and iframe while the transaction is going through
+    so that nothing pops up before going to bing.com
+    3) This vulnerability can be mitigated using a secret validation token.
+
+
+Part C)
+    1) I am exploiting a vulnerability to SQL injection. There is a vulnerability in checkLogin in auth.php as db->quote
+    is not used to check the username input and so it can be manipulated to a harmful string.
+    2) I created a page with a simple form to take in a username. Upon clicking the submit button, I run a function that appends a "'" character
+    to the username value to close that input to the corresponding SQL query that is called when trying to login. I then
+    appended a "--" which is an SQL comment which comments out the rest of the query that checks for a password. The
+    query then successfully finds a user with the corresponding username and logs them in as the password doesn't
+    matter anymore.
+    3) This vulnerability can be mitigated using Object-Relational Mapping.
+    
