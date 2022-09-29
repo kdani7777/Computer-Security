@@ -1,0 +1,7 @@
+Sploit1 was a standard buffer overflow attack. The target uses strcpy to copy user input
+to the buffer of size 220. Strcpy doesn't check the length of user input so we can 
+overwrite stack variables. 
+
+We create a buffer of size 220+8 = 228 and fill with NOPs (0x90) and our shellcode. We then
+overwrite the EIP to point back into our buffer in the NOP region, using strncpy(buffer + 224, "\xac\xfc\xff\xbf", 4).
+We found this value through GDB as the address of buf in Target1.c's foo() method.

@@ -1,0 +1,18 @@
+The vulnerability in sploit3 is an integer overflow bug with the count
+variable that is placed at the beginning of our buffer. This count in 
+inputted as a string in our buffer, and then compared to a signed integer
+(MAX_WIDGETS) in the foo method in Target3.c. After passing this check, the count
+gets multiplied by the size of the widget struct = 16, concatenated to a 32
+bit number and then used in memcpy to copy that number of bytes from our buffer. 
+
+We first created a buffer with 202 structs * 16 bytes = 3232 total bytes. We 
+chose to add 2 extra structs because after the count and comma are sliced off 
+of our buffer input, we will have 11 fewer bytes, therefore we need >19 extra
+bytes (11 + 8(EBP and EIP)) in order to overwrite the EIP. To find our count
+number, we reverse engineered the arithmetic to find our count variable by 
+doing 202 + 2147483647(1 in the 32 bit location) = 2147483850. This number 
+is treated as a negative when compared to MAX_WIDGETS due to the 1 in the 32nd
+bit, thus passing the MAX_WIDGETS check. After being multiplied by 16 it
+is concatenated to 3232 (the size of our buffer) and we are able to overwrite 
+the EIP with a pointer back into our buffer in the NOP region, leading to 
+our shellcode.

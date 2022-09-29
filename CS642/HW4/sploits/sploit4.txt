@@ -1,0 +1,25 @@
+The exploit for sploit4 is that the foo() in Target4.c tries
+to double-free the q ptr! When p is overwritten with size of 
+1024, it also writes over the chunk of code underneath the q ptr.
+The double free allows us to create a "chunk" at this q_ptr and
+write to any 4 byte location in memory (the EIP).
+
+The lines in tmalloc.c we will take advantage of by the SETTING of
+the Fake_Right FREEBIT located at buffer+4:
+q->s.r      = p->s.r;
+p->s.r->s.l = q;
+
+We created a buffer[1024] and placed our shellcode in the first half,
+before the location of the q_ptr. Next we calculated the offset of the 
+q_ptr in relation to the p_ptr (q_ptr - p_ptr - 8(the chunksize)) = 208.
+Using this offset we set the q.left and q.right values at the 
+buffer + (q-p-8) and buffer + (q-p-4). Placing the address of our buffer, 
+and the address of the stored EIP location which were found using GDB
+within foo() of target4.c. This causes the q chunk in tfree() to be located
+at the beginning of our buffer, where our fake q->s.r is located (buffer+4).
+
+Lastly, after the copying of value into the EIP, we must JUMP the "garbage"
+at the beginning of our buffer. We do this by setting the first two bytes of
+our buffer equal to the jumpcode "\xeb\x0c" jumping 12 bytes. Thus, placing
+the execution within the NOP region of our buffer, before the shellcode at
+buffer+50. 
