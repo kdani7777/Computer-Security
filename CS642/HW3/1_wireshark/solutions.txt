@@ -1,0 +1,64 @@
+# Your UW ID and your name - there is no special format for this. (This homework ought to be done individually)
+	nosmith - Nolan Smith
+	kdani2 - Kush Dani
+
+# Trace 1: HTTP
+## Give three websites (domain name and IP addresses) visited from source IP address `192.168.0.100`
+	1 - www.amazon.com (205.251.242.54)
+	2 - www.baidu.com (180.76.3.151)
+	3 - www.madisonproperty.com (50.93.210.4)
+## Give three search queries and the domain of the site for each query made from source IP address `192.168.0.100`
+	1 - "Chicago metro" - www.bing.com
+	2 - "madison map" - www.bing.com
+	3 - "adventures in Stochastic Processes" - completion.amazon.com/www.amazon.com
+
+# Trace 2: FTP
+## What is the user name and password used to connect to the FTP server?
+	Username: shiningmoon
+	Password: public
+## List any (and all) files that were downloaded.
+	dragon.zip
+	arp.java
+	L2Switch.java
+	phase1.html
+## List the full path for two files (in different directories) on the FTP server that were NOT downloaded.
+	/jerrygen.zip
+	/phase1/StoreForwardingDatalink.java
+
+# Trace 3: Traceroute
+## Briefly describe how the traceroute tool works including which network protocols are in use.
+The traceroute tool traces the path of a packet from the source machine to an internet host by calculating the average time taken each hop and utilizes UDP and ICMP network protocols
+## Give the source IP address that issued the traceroute command and the destination IP address.
+	Source: 192.168.0.100
+	Destination: 74.125.225.46
+## List the IP addresses on the route between source and destination.
+	192.168.0.1
+10.131.180.1
+96.34.20.20
+96.34.17.95
+96.34.16.112
+96.34.16.77
+96.34.2.4
+96.34.0.7
+96.34.0.9
+96.34.3.9
+96.34.152.30
+209.85.254.120
+209.85.250.28
+
+# Trace 4: POP
+## What is the POP username and password?
+	Username: cs155@dummymail.com
+	Password: whitehat
+## How many emails are in the user's mailbox?
+	5 emails
+## Give the contents of from, to, subject, and date for one email message.
+	From: hariny <harinym@stanford.edu>
+	To: cs155@dummymail.com
+	Subject: geology rocks!
+	Date: Friday, 23rd April 2010
+## What email client (application) and operating system is this person using to send and receive email?
+	Email Client: Thunderbird 2.0.0.23
+	OS: Windows
+
+
